@@ -4,8 +4,10 @@ Use 'Bluetoothctl' command in linux, then using 'scan on' command to find the MA
 Use 'pair <MAC address>' or use 'connect <Mac addresss>' to connect the Xbox Controller
 
 start all nodes:
-go to /home/husarion/Main_docker folder
-run ./start.sh
+go to /home/husarion/Main_docker folder run 
+'''
+./start.sh
+'''
 then  ./start_camera_node.sh    (if this script return error, it means the camera is busy; try run ./kill.sh or check ./kill.sh 's content to see how to kill ongoing progress that occupies the camera)
 Need to wait sometime for the Xbox Controller setup
 
