@@ -1,0 +1,51 @@
+services:
+  joy2twist:
+    image: husarion/joy2twist:humble
+    devices:
+      - /dev/input
+    volumes: 
+      - ./config/logitech-f710.yaml:/params.yaml
+    command: > 
+      ros2 launch joy2twist gamepad_controller.launch.py
+        joy2twist_params_file:=/params.yaml
+
+  rosbot-xl:
+    image: husarion/rosbot-xl:humble
+    container_name: rosbot-xl
+    restart: unless-stopped
+    command: ros2 launch rosbot_xl_bringup bringup.launch.py mecanum:=${MECANUM:-True}
+
+  microros:
+    image: husarion/micro-ros-agent:humble
+    container_name: microros
+    restart: unless-stopped
+    ports:
+      - "8888:8888/udp"
+    command: ros2 run micro_ros_agent micro_ros_agent udp4 --port 8888
+    
+  zed:
+    image: husarion/zed-desktop-cpu:humble
+    container_name: zed
+    network_mode: host
+    ipc: host
+    volumes:
+      - /dev:/dev 
+    environment:
+      - ROS_DOMAIN_ID=${ROS_DOMAIN_ID:-0}
+      - RMW_IMPLEMENTATION=${RMW_IMPLEMENTATION:-rmw_fastrtps_cpp}
+    privileged: true
+    command: ros2 launch zed_cpu zed.launch
+
+  rviz:
+    image: husarion/rviz2:humble
+    container_name: rviz1
+    network_mode: host
+    ipc: host
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - ./default_cpu.rviz:/root/.rviz2/default.rviz
+    environment:
+      - DISPLAY=${DISPLAY:?err}
+      - LIBGL_ALWAYS_SOFTWARE=1
+      - ROS_DOMAIN_ID=${ROS_DOMAIN_ID:-0}
+      - RMW_IMPLEMENTATION=${RMW_IMPLEMENTATION:-rmw_fastrtps_cpp}

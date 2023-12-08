@@ -1,0 +1,24 @@
+services:
+  rosbot-xl:
+    image: husarion/rosbot-xl:humble
+    container_name: rosbot-xl2
+    restart: unless-stopped
+    command: ros2 launch rosbot_xl_bringup bringup.launch.py mecanum:=${MECANUM:-True}
+
+  microros:
+    image: husarion/micro-ros-agent:humble
+    container_name: microros2
+    restart: unless-stopped
+    ports:
+      - "8888:8888/udp"
+    command: ros2 run micro_ros_agent micro_ros_agent udp4 --port 8888
+  
+  joy2twist:
+    image: husarion/joy2twist:humble
+    devices:
+      - /dev/input
+    volumes: 
+      - ./config/logitech-f710.yaml:/params.yaml
+    command: > 
+      ros2 launch joy2twist gamepad_controller.launch.py
+        joy2twist_params_file:=/params.yaml
