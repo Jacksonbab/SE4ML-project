@@ -1,0 +1,4 @@
+[console_scripts]
+rosbot_ml_node = python_package_with_a_node.rosbot_ml_node:main
+sample_python_node = python_package_with_a_node.sample_python_node:main
+
