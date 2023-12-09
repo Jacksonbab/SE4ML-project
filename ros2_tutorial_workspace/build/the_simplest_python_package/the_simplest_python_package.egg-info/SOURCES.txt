@@ -1,0 +1,15 @@
+package.xml
+setup.cfg
+setup.py
+../../build/the_simplest_python_package/the_simplest_python_package.egg-info/PKG-INFO
+../../build/the_simplest_python_package/the_simplest_python_package.egg-info/SOURCES.txt
+../../build/the_simplest_python_package/the_simplest_python_package.egg-info/dependency_links.txt
+../../build/the_simplest_python_package/the_simplest_python_package.egg-info/entry_points.txt
+../../build/the_simplest_python_package/the_simplest_python_package.egg-info/requires.txt
+../../build/the_simplest_python_package/the_simplest_python_package.egg-info/top_level.txt
+../../build/the_simplest_python_package/the_simplest_python_package.egg-info/zip-safe
+resource/the_simplest_python_package
+test/test_copyright.py
+test/test_flake8.py
+test/test_pep257.py
+the_simplest_python_package/__init__.py
