@@ -1,7 +1,8 @@
 # SE4ML-project
 
 # Contents 
-Instructions are located in the docs folder 
+Data collection and Robot Running Instructions are located in the docs folder 
+Model Training Instructions are inside Model_Training folder
 
 # Installation 
 Follow basic rosbot setup guide https://husarion.com/tutorials/howtostart/rosbotxl-quick-start/
