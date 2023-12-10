@@ -1,60 +1,15 @@
 # SE4ML-project
+
+# Contents 
+Instructions are located in the docs folder 
+
 # Installation 
 Follow basic rosbot setup guide https://husarion.com/tutorials/howtostart/rosbotxl-quick-start/
+
+You should have a camera or lidar to collect the data. The type of camera and lidar satisfied for the RosbotXL is also in the husarion.com website.
 
 /home/husarion/Main_docker contains all the relevent docker images for this project. The run commands to use them are in the next section. 
 Install any prerequisites that may come up when running those commands. 
 
-
-# How to collect Data
-Use 'Bluetoothctl' command in linux, then using 'scan on' command to find the MAC address of the Xbox Controller
-Use 'pair <MAC address>' or use 'connect <Mac addresss>' to connect the Xbox Controller. Press both connection buttons on the Xbox Controller if it does not appear.
-
-Start all nodes:
-go to /home/husarion/Main_docker folder run the following.
-```
-./start.sh
-```
-And in another terminal in the same directory once that has finished. It may take a while. 
-```
- ./start_camera_node.sh    
-```
-If this script return error, it means the camera is busy; try run ``./kill.sh`` or check ./kill.sh 's content to see how to kill ongoing process that occupies the camera. 
-Alternatively ``run sudo chmod 777 -R /dev/video0 `` if it is a permission issue
-
-In /home/husarion/ros2_tutorial_workspace run the following command in another terminal. 
-```
-./run.sh
-```
-# Collection Prodcedure 
-Once you have run ``./run.sh``
-press Y on gamepad to start collection.
-press A when you finish collection.
-!!! You should hold and press the buttons for a couple seconds or press multiple times to make sure it works. 
-
-You can collect multiple times as long as the code is running. Ensure you finish the previous collection cleanly by pressing A multiple times.
-When you press A to finish collection. Your data will be written into those three files inside the home/husarion/Data folder
-
-Disconnect all external plugs such as the charger or HDMI from the robot and make sure that it is stable before trying to drive it around. 
-
-To drive the robot you must hold down the right bumper and then use the stick to control acceleration. 
-
-# Running the Model 
-Start all nodes:
-go to /home/husarion/Main_docker folder run the following.
-```
-./start.sh
-```
-And in another terminal in the same directory once that has finished. It may take a while. 
-```
- ./start_camera_node.sh    
-```
-If this script return error, it means the camera is busy; try run ``./kill.sh`` or check ./kill.sh 's content to see how to kill ongoing process that occupies the camera. 
-Alternatively ``run sudo chmod 777 -R /dev/video0 `` if it is a permission issue
-
-In /home/husarion/ros2_tutorial_workspace run the following command in another terminal. 
-```
-./run_inference.sh
-```
-
-
+# Model Evaluation
+Our robot can sometimes recognize the wall and the stairs of the rice hall 4th floor, but sometimes it's going to be hesitate with whether it should turn left or right in an open area. This is a very common phenomenon since our model do not have collect enough data around the open area. Also, since we do not collect every turning angle of robot, so it may sometimes get straight into the wall with only linear speed.
