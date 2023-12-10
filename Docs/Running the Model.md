@@ -19,4 +19,4 @@
    ```
 4. Once the model is running, disconnect all attached wires and place the robot on your chosen track
 
-5. To stop the model reconnect the keyboard and press CTRL+C 
+5. To stop the model, reconnect the keyboard and press CTRL+C 
