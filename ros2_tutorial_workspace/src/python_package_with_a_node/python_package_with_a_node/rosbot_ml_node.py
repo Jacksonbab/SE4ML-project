@@ -13,7 +13,7 @@ import numpy as np
 class RosbotML(Node):
     def __init__(self):
         super().__init__('rosbot_ml')
-        self.model = load_model('/home/husarion/ros2_tutorial_workspace/src/python_package_with_a_node/python_package_with_a_node/model_cpt/model-20231206_163456-DAVE2v3-336x188-lr0.0001-180epoch-64batch-lossMSE-5Ksamples-INDUSTRIALandHIROCHIandUTAH-noiseflipblur-last.pt')
+        self.model = load_model('/home/husarion/ros2_tutorial_workspace/src/python_package_with_a_node/python_package_with_a_node/model_cpt/exampler_cpt.pt')
         print("model loaded")
         self.image = None
 
